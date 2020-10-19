@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<title>sidebar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+
+<div class="w3-sidebar w3-bar-block w3-black w3-card" style="width:220px;">
+ <h5 class="w3-bar-item">Menu</h5>
+   <a href="/" class="w3-bar-item w3-button">Dashboard</a>
+
+  <a href="#" class="w3-bar-item w3-button">Contacts</a>
+  <button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
+  SMS Messages <i class="fa fa-caret-down"></i>
+  </button>
+  <div id="demoAcc" class="w3-hide w3-white w3-card">
+    <a href="msg_single" class="w3-bar-item w3-button">Single SMS Message</a>
+    <a href="#" class="w3-bar-item w3-button">Bulk SMS Message</a>
+    <a href="#" class="w3-bar-item w3-button">SMS Inbox</a>
+    <a href="#" class="w3-bar-item w3-button">SMS Outbox</a>
+  </div>
+  <button class="w3-button w3-block w3-left-align" onclick="myAccFuncone()">
+  Email <i class="fa fa-caret-down"></i>
+  </button>
+  <div id="demoAccone" class="w3-hide w3-white w3-card">
+    <a href="#" class="w3-bar-item w3-button">Single  Mail</a>
+    <a href="#" class="w3-bar-item w3-button">Bulk  Mail</a>
+    <a href="#" class="w3-bar-item w3-button">Mail Outbox</a>
+  </div>
+
+
+  <a href="#" class="w3-bar-item w3-button">SMS Group</a>
+  <a href="#" class="w3-bar-item w3-button">Template Message</a>
+  <a href="#" class="w3-bar-item w3-button">Blacklist</a>
+  <a href="#" class="w3-bar-item w3-button">Autoresponder Keyword</a>
+
+    <button class="w3-button w3-block w3-left-align" onclick="myAccFunctwo()">
+  Report <i class="fa fa-caret-down"></i>
+  </button>
+  <div id="demoAcctwo" class="w3-hide w3-white w3-card">
+    <a href="#" class="w3-bar-item w3-button">Single  Mail</a>
+    <a href="#" class="w3-bar-item w3-button">Bulk  Mail</a>
+    <a href="#" class="w3-bar-item w3-button">Mail Outbox</a>
+  </div>
+  <button class="w3-button w3-block w3-left-align" onclick="myAccFuncthree()">
+  Settings <i class="fa fa-caret-down"></i>
+  </button>
+  <div id="demoAccthree" class="w3-hide w3-white w3-card">
+    <a href="#" class="w3-bar-item w3-button">Single  Mail</a>
+    <a href="#" class="w3-bar-item w3-button">Bulk  Mail</a>
+    <a href="#" class="w3-bar-item w3-button">Mail Outbox</a>
+  </div>
+</div>
+
+
+
+<script>
+function myAccFunc() {
+  var x = document.getElementById("demoAcc");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-green", "");
+  }
+}
+function myAccFuncone() {
+  var x = document.getElementById("demoAccone");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-green", "");
+  }
+}
+function myAccFunctwo() {
+  var x = document.getElementById("demoAcctwo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-green", "");
+  }
+}
+function myAccFuncthree() {
+  var x = document.getElementById("demoAccthree");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-green", "");
+  }
+}
+
+
+function myDropFunc() {
+  var x = document.getElementById("demoDrop");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-green";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-green", "");
+  }
+}
+</script>
+
+</body>
+</html>
