@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from home.models import Person, Admin, Message
+from home.models import Person, Admin, Message , Message2
 from django.contrib import messages
 from twilio.rest import Client
 
@@ -29,7 +29,12 @@ def adminlogout(request):
         del request.session['username']
         return redirect('admin')
     except:
-        return render(request, 'signin.html')  
+        return render(request, 'signin.html') 
+
+def contact(request):
+    user = Person.objects.all()  
+    return render(request, 'contact.html',{'users':user})
+
 #end admin section
 #user section
 def login(request):
@@ -63,11 +68,11 @@ def signup(request):
         data.city = request.POST['city']
         data.pin = request.POST['pin']
         data.save()
-        messages.success(request,"New User Registered Sucessfully")
+        messages.success(request,"New contact Registered Sucessfully")
 
-        return redirect('/')
+        return redirect('contact')
     else:
-        return render(request, 'signup.html')
+        return render(request, 'contact.html')
 
 def msg_single(request):
     if request.method == 'POST':
@@ -96,6 +101,34 @@ def msg_single(request):
     else:
         admin_data = Admin.objects.all()
         return render(request, 'message_single.html',{'record':admin_data})
+
+def msg_bulk(request):
+    if request.method == 'POST':
+        data = Message()
+        data.msg_from = request.POST['twilio_number']
+        data.msg_to = request.POST['number']
+        data.account_type = request.POST['ac_type']
+        data.msg = request.POST['message']
+        data.save()
+
+        account_sid = 'ACf69a4020e336cb159bd4cebda28965b6'
+        auth_token = '37fdeed5c116469ea817085552775ea4'
+        client = Client(account_sid, auth_token)
+ 
+        message = client.messages.create(
+                                    body=request.POST['message'],
+                                    from_= request.POST['twilio_number'],
+                                    media_url=['https://demo.twilio.com/owl.png'],
+                                    to= request.POST['number']
+                                )
+
+        print(message.sid)
+        messages.success(request,"Message Sent Succesfully")
+
+        return redirect('msg_bulk')
+    else:
+        admin_data = Admin.objects.all()
+        return render(request, 'message_bulk.html',{'record':admin_data})
 
 
 

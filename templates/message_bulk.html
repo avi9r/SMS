@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dashboard</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+   <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css'>
+  </head>
+  <style>
+  .nav{
+    margin-left: 120px;
+  }
+  .container{
+      top: 0;
+      right:0; 
+      bottom: 0;
+  }
+
+  .row{
+  height:1000px;
+}
+  </style>
+  
+{% block content %}
+
+ {% if request.session.username %}
+ <section id="content">
+
+    <div class="nav"> 
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+            <a class="nav-link" href="#"><b>Welcome @{{request.session.username}}</b></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="logout"><b>Logout</b></a>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <div class="card container " >
+
+        <div>
+        <div class="card-header">
+                  <i class="fa fa-edit"></i><b>Compose </b>
+				</div>
+            <div class="card-body col-lg-7">
+                <form class="form-horizontal" id="formValidate2" data-validate="parsley" method="post" action="msg_bulk" name="client_record" enctype="multipart/form-data" onsubmit="return check_lenght()">
+                  {% csrf_token %}
+                <div class="form-group" id="number_holder">
+                      <label class="col-form-label" for="prependedInput">Number</label>
+                    <div class="controls">
+                        <div class="input-prepend input-group">
+                          <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            
+                            <select multiple class="select_all">
+                                <option value="" disabled selected>Choose Numbers</option>
+                                <option value = "1">Mango</option>
+                                <option value = "24">Orange</option>
+                                <option value = "3">Apple</option>
+                                <option value = "4">Cucumber</option>
+                                <option value = "5">Litchi</option>
+                            </select>              
+                            
+                      </div>
+                    </div>
+					<div class="form-group">
+                    <label class="col-form-label" for="appendedInput">Account Type</label>
+                    <div class="controls">
+					<div class="input-group">
+					<select id="select2-1" class="form-control select2-single select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="ac_type" onchange="select_n(this.value)" required="">
+					<option value="twilio">Twilio</option>
+					</select>
+					</div>
+					</div>
+					</div>
+                    <div class="form-group">
+                      <label class="col-form-label" for="appendedInput">Twilio Number</label>
+                      <div class="controls">
+                        <div class="input-group">
+                    <select id="sl" class="form-control select2-single select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="twilio_number" required="">
+                    <option value="">Select</option>
+                    {% for num in record %} 
+                      <option value="{{num.twillo_number}}">{{num.twillo_number}}</option>
+                    {% endfor %} 
+
+                        </select>
+                     </div>
+                      </div>
+                    </div>
+                    <div class="form-group emoji-contant-align" id="custome_messgae">
+                      <label class="col-form-label" for="appendedPrependedInput">Message</label>
+                      <div class="controls">
+                        <div class="input-prepend input-group">
+                         <textarea name="message" data-control="exname-control" rows="9" class="form-control" placeholder="Write your Message Here!"></textarea><br>
+
+                        </div> <span id="counter-holder"><span>
+                      </span></span></div>
+                    </div>
+					
+                      <div class="controls">
+                    <div class="form-actions">
+                      <button type="submit" id="send_btn" name="type" class="btn btn-primary">Send Now</button>
+                      <button type="reset" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+       </div>  
+    </div>
+</section>  <!-- End #blog-posts -->
+  {% else %}
+    <div style="margin-left:230px">
+    <div class="nav" > 
+    <ul class="nav justify-content-end">
+    <li class="nav-item">
+    <a class="nav-link" href="signin">Sign In</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="signup">Sign Up</a>
+    </li>
+    </ul>
+    </div>
+    </div><br><br><br>
+    <center><h1>Please Sign in to access Homepage</h1></center>
+
+ {% endif %}
+  
+{% endblock %}
+</html>
+
+<script>
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Material Select Initialization
+$(document).ready(function() {
+$('.mdb-select').materialSelect();
+});
+</script>
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js'></script>
+<script>
+$(document).ready(function() {
+    $('select').formSelect();
+    $('select.select_all').siblings('ul').prepend('<li id=sm_select_all><span>Select All</span></li>');
+    $('li#sm_select_all').on('click', function () {
+      var jq_elem = $(this), 
+          jq_elem_span = jq_elem.find('span'),
+          select_all = jq_elem_span.text() == 'Select All',
+          set_text = select_all ? 'Select None' : 'Select All';
+      jq_elem_span.text(set_text);
+      jq_elem.siblings('li').filter(function() {
+        return $(this).find('input').prop('checked') != select_all;
+      }).click();
+    });
+})
+</script>

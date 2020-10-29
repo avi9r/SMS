@@ -42,6 +42,18 @@ class Message(models.Model):
     class Meta:
         db_table="msg_single"
 
+class Message2(models.Model):
+    msg_from = models.CharField( max_length=50)
+    msg_to = models.CharField( max_length=100)
+    msg = models.CharField( max_length=50)
+    account_type = models.CharField( max_length=50)
+    status =models.BooleanField(default=0)
+    created_at = models.TimeField(default = timezone.now)
+    updated_at = models.TimeField(default = timezone.now)
+    
+    class Meta:
+        db_table="msg_bulk"
+
     
 
     

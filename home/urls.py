@@ -9,6 +9,8 @@ urlpatterns = [
     path('admin_dashboard', views.adminindex, name="adminindex"),
     path('admin', views.adminlogin, name="admin"),
     path('msg_single', views.msg_single, name="msg_single"),
+    path('msg_bulk', views.msg_bulk, name="msg_bulk"),
+    path('contact', views.contact, name="contact"),
 
     path('home', views.index, name="home"),
     path('signup', views.signup, name="signup"),
